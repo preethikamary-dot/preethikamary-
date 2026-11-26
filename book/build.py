@@ -27,7 +27,7 @@ from art import all_art  # noqa: E402
 TITLE_1 = "Color"
 TITLE_2 = "& Smile!"
 SUBTITLE = "Big & Easy Coloring Book for Kids Ages 3-5"
-PUBLISHER = "Little Crayon Press"
+AUTHOR = "Preethika Mary"
 SITE_URL = "preethikamary-dot.github.io/preethikamary-"
 YEAR = 2026
 
@@ -109,7 +109,7 @@ def front_panel(x, y, w, h, s=1.0, safe_l=0.45, safe_r=0.45, safe_t=0.45, safe_b
   <div class="sub" style="font-size:{.25 * s}in;padding:{.08 * s}in {.3 * s}in">{SUBTITLE.replace(' for Kids', '<br>for Kids')}</div>
   <div class="cards" style="padding:{.1 * s}in {.15 * s}in">{cards}</div>
   <div class="ribbon" style="font-size:{.23 * s}in;padding:{.09 * s}in">50 Fun Pages &bull; Thick Lines &bull; Simple Shapes</div>
-  <div class="pub" style="font-size:{.17 * s}in">{PUBLISHER}</div>
+  <div class="pub" style="font-size:{.24 * s}in">by {AUTHOR}</div>
   <div class="badge" style="right:{safe_r - .05}in;top:{safe_t + 2.95 * s}in;width:{1.25 * s}in;height:{1.25 * s}in;font-size:{.22 * s}in">AGES<br><b style="font-size:{.42 * s}in">3-5</b></div>
 </div>"""
 
@@ -150,7 +150,7 @@ def spine_div(x, y, w, h, font_in):
     if w < 0.2:  # too thin for text
         return f'<div class="spine" style="left:{x}in;top:{y}in;width:{w}in;height:{h}in"></div>'
     return (f'<div class="spine" style="left:{x}in;top:{y}in;width:{w}in;height:{h}in">'
-            f'<span style="font-size:{font_in}in">{TITLE_1.upper()} {TITLE_2.upper()} &nbsp;&bull;&nbsp; {PUBLISHER}</span></div>')
+            f'<span style="font-size:{font_in}in">{TITLE_1.upper()} {TITLE_2.upper()} &nbsp;&bull;&nbsp; {AUTHOR.upper()}</span></div>')
 
 
 def paperback_cover(pages):
@@ -207,7 +207,7 @@ def p_title(w, h):
   <div class="big" style="font-size:1.4in">{TITLE_1}<br>{TITLE_2}</div>
   <div style="font-size:.3in;font-weight:600">{SUBTITLE}</div>
   <div style="width:3.6in">{BY['sun'].svg(label=False)}</div>
-  <div style="font-size:.22in">{PUBLISHER}</div>
+  <div style="font-size:.3in;font-weight:600">by {AUTHOR}</div>
 </div>""")
 
 
@@ -221,8 +221,8 @@ def p_copyright(w, h):
   &bull; Name the colors and shapes together &mdash; &ldquo;What color is the sun?&rdquo;<br>
   &bull; Color for free on a tablet or computer at <b>{SITE_URL}</b></p>
   <p style="margin-top:.4in">{TITLE_1} {TITLE_2} &mdash; {SUBTITLE}<br>
-  Copyright &copy; {YEAR} {PUBLISHER}. All rights reserved. No part of this book may be reproduced
-  without written permission from the publisher, except for personal, non-commercial use.<br>
+  Copyright &copy; {YEAR} {AUTHOR}. All rights reserved. No part of this book may be reproduced
+  without written permission from the author, except for personal, non-commercial use.<br>
   Illustrations created with the help of AI tools.</p>
 </div>""")
 
@@ -302,6 +302,40 @@ def sample_pdf(w, h):
     return head(w, h, INTERIOR_CSS) + "".join(pages) + "</body></html>"
 
 
+# --------------------------------------------------------------- gumroad --
+def gumroad_cover():
+    """1280 x 720 product cover for the Gumroad listing."""
+    cover = os.path.join(DOCS, "assets", "img", "front-cover.jpg")
+    minis = "".join(f'<div class="mini">{BY[n].svg(colored=True, label=False)}</div>' for n in ("sun", "fish", "owl", "train"))
+    return head(extra_css=COVER_CSS + """
+body { width:1280px; height:720px; position:relative; overflow:hidden }
+.cv { position:absolute; left:90px; top:60px; height:600px; border:6px solid #1d3557; border-radius:10px; transform:rotate(-4deg); box-shadow:18px 20px 0 rgba(29,53,87,.25) }
+.txt { position:absolute; left:610px; top:70px; right:60px; display:flex; flex-direction:column; gap:22px; color:#1d3557 }
+.txt h1 { font-size:76px; line-height:.95; font-weight:700; -webkit-text-stroke:3px #fff; paint-order:stroke fill; filter:drop-shadow(0 5px 0 #1d3557) }
+.txt .by { font-size:30px; font-weight:600 }
+.txt .pill { align-self:flex-start; background:#ef476f; color:#fff; font-weight:700; font-size:28px; padding:8px 24px; border-radius:999px; border:4px solid #1d3557 }
+.row { display:flex; gap:16px }
+.mini { width:110px; height:110px; background:#fff; border:4px solid #1d3557; border-radius:20px; padding:8px }
+.mini svg { width:100%; height:100% }
+.pts { font-size:24px; font-weight:600; line-height:1.5 }
+""") + f"""<div class="sky"></div><div class="dots"></div>
+<img class="cv" src="file://{cover}">
+<div class="txt"><h1>{rainbow_text(TITLE_1)} {rainbow_text(TITLE_2)}</h1>
+<div class="by">Printable coloring book for ages 3-5 &middot; by {AUTHOR}</div>
+<div class="row">{minis}</div>
+<div class="pts">25 big, easy pictures &bull; thick lines &bull; instant PDF</div>
+<div class="pill">Print at home, again and again</div></div></body></html>"""
+
+
+def gumroad_thumb():
+    """600 x 600 square thumbnail for the Gumroad listing."""
+    cover = os.path.join(DOCS, "assets", "img", "front-cover.jpg")
+    return head(extra_css=COVER_CSS + """
+body { width:600px; height:600px; position:relative; overflow:hidden }
+img { position:absolute; left:50%; top:40px; height:520px; transform:translateX(-50%) rotate(-3deg); border:5px solid #1d3557; border-radius:8px; box-shadow:12px 14px 0 rgba(29,53,87,.25) }
+""") + f'<div class="sky"></div><div class="dots"></div><img src="file://{cover}"></body></html>'
+
+
 # --------------------------------------------------------------------- site --
 def write_site_data():
     data = [{"title": a.title, "svg": a.svg(interactive=True), "colored": a.svg(colored=True, label=False)} for a in ARTS]
@@ -372,6 +406,13 @@ def main():
     jobs.append(dict(type="png", html=w(f"{BUILD}/front.html", front_only(*PB_TRIM)), out=f"{DOCS}/assets/img/front-cover.jpg", vw=816, vh=1056, scale=1.5))
     jobs.append(dict(type="png", html=w(f"{BUILD}/back.html", back_only(*PB_TRIM)), out=f"{DOCS}/assets/img/back-cover.jpg", vw=816, vh=1056, scale=1.5))
     jobs.append(dict(type="pdf", html=w(f"{BUILD}/sample.html", sample_pdf(*PB_TRIM)), out=f"{DOCS}/downloads/free-sample-pages.pdf", width=PB_TRIM[0], height=PB_TRIM[1]))
+
+    # Gumroad listing images + product file
+    gdir = os.path.join(ROOT, "gumroad")
+    os.makedirs(gdir, exist_ok=True)
+    jobs.append(dict(type="png", html=w(f"{BUILD}/gumroad-cover.html", gumroad_cover()), out=f"{gdir}/gumroad-cover-1280x720.png", vw=1280, vh=720, scale=1))
+    jobs.append(dict(type="png", html=w(f"{BUILD}/gumroad-thumb.html", gumroad_thumb()), out=f"{gdir}/gumroad-thumbnail-600x600.png", vw=600, vh=600, scale=1))
+    jobs.append(dict(type="pdf", html=f"{BUILD}/interior-kindle.html", out=f"{gdir}/Color-and-Smile-Coloring-Book-Preethika-Mary.pdf", width=PB_TRIM[0], height=PB_TRIM[1]))
 
     with open(f"{BUILD}/jobs.json", "w") as f:
         json.dump(jobs, f, indent=1)
