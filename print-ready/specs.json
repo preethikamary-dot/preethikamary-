@@ -1,0 +1,41 @@
+{
+  "paperback": {
+    "trim_in": [
+      8.5,
+      11.0
+    ],
+    "pages": 106,
+    "paper": "white",
+    "interior": "black & white, no bleed",
+    "spine_in": 0.2387,
+    "cover_in": [
+      17.4887,
+      11.25
+    ],
+    "cover_finish": "glossy"
+  },
+  "hardcover": {
+    "trim_in": [
+      8.25,
+      11.0
+    ],
+    "pages": 106,
+    "paper": "white",
+    "interior": "black & white, no bleed",
+    "spine_in": 0.428,
+    "spine_note": "estimate - check KDP hardcover cover calculator and rebuild with --hc-spine",
+    "cover_in": [
+      17.948,
+      12.02
+    ],
+    "wrap_in": 0.51,
+    "hinge_in": 0.4
+  },
+  "kindle": {
+    "cover_px": [
+      1600,
+      2560
+    ],
+    "interior_pages": 29
+  }
+}
