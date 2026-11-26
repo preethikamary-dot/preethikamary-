@@ -27,7 +27,7 @@ from art import all_art  # noqa: E402
 TITLE_1 = "Color"
 TITLE_2 = "& Smile!"
 SUBTITLE = "Big & Easy Coloring Book for Kids Ages 3-5"
-PUBLISHER = "Little Crayon Press"
+AUTHOR = "Preethika Mary"
 SITE_URL = "preethikamary-dot.github.io/preethikamary-"
 YEAR = 2026
 
@@ -109,7 +109,7 @@ def front_panel(x, y, w, h, s=1.0, safe_l=0.45, safe_r=0.45, safe_t=0.45, safe_b
   <div class="sub" style="font-size:{.25 * s}in;padding:{.08 * s}in {.3 * s}in">{SUBTITLE.replace(' for Kids', '<br>for Kids')}</div>
   <div class="cards" style="padding:{.1 * s}in {.15 * s}in">{cards}</div>
   <div class="ribbon" style="font-size:{.23 * s}in;padding:{.09 * s}in">50 Fun Pages &bull; Thick Lines &bull; Simple Shapes</div>
-  <div class="pub" style="font-size:{.17 * s}in">{PUBLISHER}</div>
+  <div class="pub" style="font-size:{.24 * s}in">by {AUTHOR}</div>
   <div class="badge" style="right:{safe_r - .05}in;top:{safe_t + 2.95 * s}in;width:{1.25 * s}in;height:{1.25 * s}in;font-size:{.22 * s}in">AGES<br><b style="font-size:{.42 * s}in">3-5</b></div>
 </div>"""
 
@@ -150,7 +150,7 @@ def spine_div(x, y, w, h, font_in):
     if w < 0.2:  # too thin for text
         return f'<div class="spine" style="left:{x}in;top:{y}in;width:{w}in;height:{h}in"></div>'
     return (f'<div class="spine" style="left:{x}in;top:{y}in;width:{w}in;height:{h}in">'
-            f'<span style="font-size:{font_in}in">{TITLE_1.upper()} {TITLE_2.upper()} &nbsp;&bull;&nbsp; {PUBLISHER}</span></div>')
+            f'<span style="font-size:{font_in}in">{TITLE_1.upper()} {TITLE_2.upper()} &nbsp;&bull;&nbsp; {AUTHOR.upper()}</span></div>')
 
 
 def paperback_cover(pages):
@@ -207,7 +207,7 @@ def p_title(w, h):
   <div class="big" style="font-size:1.4in">{TITLE_1}<br>{TITLE_2}</div>
   <div style="font-size:.3in;font-weight:600">{SUBTITLE}</div>
   <div style="width:3.6in">{BY['sun'].svg(label=False)}</div>
-  <div style="font-size:.22in">{PUBLISHER}</div>
+  <div style="font-size:.3in;font-weight:600">by {AUTHOR}</div>
 </div>""")
 
 
@@ -221,8 +221,8 @@ def p_copyright(w, h):
   &bull; Name the colors and shapes together &mdash; &ldquo;What color is the sun?&rdquo;<br>
   &bull; Color for free on a tablet or computer at <b>{SITE_URL}</b></p>
   <p style="margin-top:.4in">{TITLE_1} {TITLE_2} &mdash; {SUBTITLE}<br>
-  Copyright &copy; {YEAR} {PUBLISHER}. All rights reserved. No part of this book may be reproduced
-  without written permission from the publisher, except for personal, non-commercial use.<br>
+  Copyright &copy; {YEAR} {AUTHOR}. All rights reserved. No part of this book may be reproduced
+  without written permission from the author, except for personal, non-commercial use.<br>
   Illustrations created with the help of AI tools.</p>
 </div>""")
 

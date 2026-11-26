@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Color &amp; Smile! Coloring Book</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="author" content="Preethika Mary">
 <meta name="description" content="Big & easy coloring book for kids ages 3-5. 25 cute designs, each printed twice, with thick lines and single-sided pages. Kindle, paperback and hardcover. Try coloring free online.">
 <meta property="og:title" content="Color & Smile! Big & Easy Coloring Book for Kids Ages 3-5">
 <meta property="og:image" content="assets/img/front-cover.jpg">
@@ -15,6 +16,9 @@
 <script>
   /* Paste your Amazon product links here after the book goes live on KDP. */
   window.BUY_LINKS = {
+    /* Checkout link for the instant PDF download, e.g. a Gumroad, Payhip,
+       Stripe Payment Link or PayPal link. Upload print-ready/kindle-interior.pdf there. */
+    download: "",
     kindle: "",
     paperback: "",
     hardcover: ""
@@ -30,6 +34,7 @@
       <a href="#try">Try it free</a>
       <a href="#inside">What's inside</a>
       <a href="#formats">Formats</a>
+      <a href="#download">Download</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn primary" href="#formats">Get the book</a>
@@ -42,10 +47,12 @@
       <div class="hero-copy">
         <p class="eyebrow">Coloring book for ages 3&ndash;5</p>
         <h1>Big, happy pictures for <em>little hands.</em></h1>
+        <p class="byline">by <strong>Preethika Mary</strong></p>
         <p class="lede">25 friendly characters drawn with extra-thick lines and simple shapes, so toddlers and preschoolers can color inside the lines and feel proud of every page.</p>
         <div class="cta-row">
           <a class="btn primary" href="#formats">Buy on Amazon</a>
-          <a class="btn sun" href="#try">Color a page free</a>
+          <a class="btn sun" href="#download">Download now</a>
+          <a class="btn" href="#try">Color a page free</a>
         </div>
         <ul class="facts" aria-label="Book facts">
           <li>50 coloring pages</li>
@@ -109,7 +116,10 @@
           <h3>Kindle eBook</h3>
           <p class="price">$2.99</p>
           <ul><li>Instant download</li><li>Print pages at home, again and again</li><li>Great for tablets and Kindle Fire</li></ul>
-          <a class="btn" data-buy="kindle" href="#formats">Buy Kindle</a>
+          <div class="btn-stack">
+            <a class="btn primary" href="#download">Download here</a>
+            <a class="btn" data-buy="kindle" href="#formats">Buy on Kindle</a>
+          </div>
         </article>
         <article class="fmt best">
           <h3>Paperback</h3>
@@ -137,6 +147,30 @@
     </div>
   </section>
 
+  <section class="download-sec" id="download">
+    <div class="wrap">
+      <div class="dl-card">
+        <img class="dl-cover" src="assets/img/front-cover.jpg" alt="Color and Smile! cover" loading="lazy">
+        <div class="dl-copy">
+          <p class="eyebrow">Kindle &amp; digital edition</p>
+          <h2>Download here and start coloring tonight</h2>
+          <p class="lede">Get the digital edition of <b>Color &amp; Smile!</b> by Preethika Mary as a printable PDF. Print your favourite pages at home as many times as your family likes.</p>
+          <ul class="dl-list">
+            <li>All 25 pictures, plus the name page and &ldquo;Great Job!&rdquo; certificate</li>
+            <li>US Letter pages (8.5 &times; 11 in) that also print well on A4</li>
+            <li>Instant download link after checkout</li>
+          </ul>
+          <div class="dl-buy">
+            <span class="price">$2.99</span>
+            <a class="btn primary" data-buy="download" href="#download">Buy &amp; download</a>
+            <a class="btn" data-buy="kindle" href="#download">Buy on Kindle</a>
+          </div>
+          <p class="dl-note">Secure checkout. Your download link appears straight after payment and is emailed to you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="faq">
     <div class="wrap">
       <div class="sec-head"><p class="eyebrow">Questions</p><h2>Good to know</h2></div>
@@ -145,6 +179,7 @@
         <details><summary>Will markers bleed through?</summary><p>Pages are printed on one side only, so bleed-through never spoils another picture. Slip a sheet of card behind the page if you use felt-tip markers.</p></details>
         <details><summary>How do I use the online coloring studio?</summary><p>Pick a picture, tap a color, then tap any shape. Use Undo if you change your mind and Start over to begin again. It works on phones, tablets and computers.</p></details>
         <details><summary>How were the pictures made?</summary><p>The line art was created with the help of AI and then refined by hand for thick, closed lines and big spaces that suit young children.</p></details>
+        <details><summary>How does the download work?</summary><p>Press &ldquo;Buy &amp; download&rdquo;, pay securely, and you get a link to the PDF right away (it is also emailed to you). Open it on any computer or tablet and print the pages you like.</p></details>
         <details><summary>Can I print pages from the Kindle edition?</summary><p>Yes. Open the eBook on a computer or tablet and print the pages you like for personal use at home.</p></details>
       </div>
     </div>
@@ -160,7 +195,7 @@
 
 <footer>
   <div class="wrap">
-    <span>&copy; 2026 Little Crayon Press &middot; Color &amp; Smile!</span>
+    <span>&copy; 2026 Preethika Mary &middot; Color &amp; Smile!</span>
     <span>Amazon and Kindle are trademarks of Amazon.com, Inc. or its affiliates.</span>
   </div>
 </footer>
@@ -171,9 +206,11 @@
   (function () {
     const g = document.getElementById('gallery');
     g.innerHTML = window.PAGES.map(p => `<figure>${p.colored}<figcaption>${p.title}</figcaption></figure>`).join('');
-    const search = 'https://www.amazon.com/s?k=' + encodeURIComponent('Color & Smile coloring book kids ages 3-5');
+    const search = 'https://www.amazon.com/s?k=' + encodeURIComponent('Color & Smile coloring book Preethika Mary');
+    const links = window.BUY_LINKS || {};
     document.querySelectorAll('[data-buy]').forEach(a => {
-      const url = (window.BUY_LINKS || {})[a.dataset.buy] || search;
+      /* Until a checkout link is added, the download button sends buyers to Kindle. */
+      const url = links[a.dataset.buy] || (a.dataset.buy === 'download' ? links.kindle : '') || search;
       a.href = url; a.target = '_blank'; a.rel = 'noopener';
     });
     if (window.IS_ARTIFACT) document.querySelectorAll('[data-sample]').forEach(a => a.closest('.band').hidden = true);

@@ -45,6 +45,6 @@ interactive coloring studio.
 ```bash
 python3 book/build.py            # needs Python 3 + pypdf, Node + Playwright (Chromium)
 ```
-Change the title, publisher, prices or site URL at the top of `book/build.py` and `docs/index.html`.
+Change the title, author, prices or site URL at the top of `book/build.py` and `docs/index.html`.
 
 Fonts: Fredoka (SIL Open Font License) and Nunito via Google Fonts.
